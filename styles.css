@@ -264,8 +264,11 @@ body {
 }
 
 .cart-item img {
+   
+    border: 1px solid #c0bebe;
     width: 75px;
     height: 75px;
+    filter: grayscale(15%);
 }
 
 .cart-item h4 {
