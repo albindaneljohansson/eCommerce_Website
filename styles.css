@@ -43,6 +43,15 @@ body {
     padding: 0 1.5rem;
 }
 
+.index-navbar-center {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+}
+
 .nav-icon {
     font-size: 1.5rem;
 }
@@ -67,14 +76,22 @@ body {
     font-family: 'Delicious Handrawn', cursive;
 }
 
+.index-shopztr {
+    font-size: xx-large;
+    font-family: 'Delicious Handrawn', cursive;
+    text-align: center;
+}
+
 /* --------------- End of Navbar ---------------- */
 /* --------------- Hero ---------------- */
 .hero {
     min-height: calc(100vh - 60px);
     background: url("./images/hero5.jpeg") center/cover no-repeat;
+    background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .banner {
@@ -92,6 +109,7 @@ body {
 }
 
 .banner-btn {
+    text-decoration: none;
     padding: 1rem 3rem;
     text-transform: uppercase;
     letter-spacing: var(--mainSpacing);
@@ -138,10 +156,7 @@ body {
     height: 200px;
     width: 200px;
     filter: grayscale(20%);
-
-
     object-fit: contain;
-
     position: relative;
     overflow: hidden;
 }
@@ -161,15 +176,42 @@ body {
     cursor: pointer;
 }
 
+.info-btn {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    background: var(--primaryColor);
+    border: none;
+    text-transform: uppercase;
+    padding: 0.5rem 0.75rem;
+    letter-spacing: var(--mainSpacing);
+    font-weight: bold;
+    transition: var(--mainTransition);
+    transform: translateX(101%);
+    cursor: pointer;
+}
+
 .bag-btn:hover {
     color: var(--mainWhite);
 }
 
-.fa-shopping-cart {
+.info-btn:hover {
+    color: var(--mainWhite);
+}
+
+.fa-search {
+    margin-right: 0.1rem;
+}
+
+.fa-magnifying-glass {
     margin-right: 0.5rem;
 }
 
 .img-container:hover .bag-btn {
+    transform: translateX(0);
+}
+
+.img-container:hover .info-btn {
     transform: translateX(0);
 }
 
@@ -283,6 +325,7 @@ body {
 }
 
 .item-amount {
+   padding-top: 1rem;
     text-align: center;
 }
 
@@ -291,12 +334,62 @@ body {
     cursor: pointer;
 }
 
-.fa-chevron-up,
 .fa-chevron-down {
     color: var(--primaryColor);
     cursor: pointer;
 }
 
+.fa-chevron-up {
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+
+.clear-btn {
+    text-decoration: none;
+    padding: 0.5rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 0.8rem;
+    background: #e6ddd6;
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background: transparent;
+    color: var(--primaryColor);
+}
+
+
+
+.checkout-container {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+#checkout-btn {
+    font-weight: bold;
+    width: 93%;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 1rem;
+    background: var(--primaryColor);
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
+}
+
+#checkout-btn:hover {
+    background: transparent;
+    color: var(--primaryColor);
+}
 /*---------- End of Cart Item -------------------- */
 
 .cart-footer {
@@ -311,3 +404,52 @@ body {
 }
 
 /* --------------- End of Cart ---------------- */
+/* --------------- Info Modal ---------------- */
+
+.modal-content {
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+#modal-button {
+        text-decoration: none;
+        padding: 1rem 3rem;
+        text-transform: uppercase;
+        letter-spacing: var(--mainSpacing);
+        font-size: 1rem;
+        background: var(--primaryColor);
+        color: var(--mainBlack);
+        border: 1px solid var(--primaryColor);
+        transition: var(--mainTransition);
+        cursor: pointer;
+}
+
+#modal-button:hover {
+    background: transparent;
+    color: var(--primaryColor);
+}
+
+#modal-image {  
+    height: 100px;
+    filter: grayscale(15%);
+
+}
+
+.modal-header {
+    width: 100%;
+    background: rgb(231, 226, 221);
+    margin-bottom: 2rem;
+}
+
+.modal-body{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    background-color: #f7f6f6;
+}
+
+#modal-title {
+    font-size: xx-large;
+}
+
+

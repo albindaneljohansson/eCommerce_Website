@@ -42,7 +42,11 @@ class UI {
         products.forEach(product => {result += `
         <article class="product">
             <div class="img-container">
-                <img src=${product.image} alt="product" class="product-img">
+                <img src=${product.image} alt="product" class="product-img">            
+                <button class="info-btn" data-id=${product.id}>
+                <i class="fas fa-search"></i>
+                info
+            </button>       
                 <button class="bag-btn" data-id=${product.id}>
                     <i class="fas fa-shopping-cart"></i>
                     add to cart
@@ -53,6 +57,16 @@ class UI {
         </article>`;
         });
         productsDOM.innerHTML = result;
+    }
+    // Add listener to info buttons and call showModal
+    getInfoButtons(){
+        const infoButtons = [...document.querySelectorAll(".info-btn")];
+        infoButtons.forEach(button => {button.addEventListener('click', (event) => {
+                let id = button.dataset.id; 
+                event.preventDefault();
+                this.showModal(id);
+            })
+        });
     }
     // Get all bagbuttons and add product ID to add-to-cart-button
     getBagButtons() {
@@ -91,6 +105,19 @@ class UI {
 
         })
     }
+
+
+// Show modal - setText - close modal
+showModal(id){               
+    let item = Storage.getProduct(id);
+    let myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('info-modal'));
+    myModal.show();
+    document.getElementById("modal-title").innerText = item.title;
+    document.getElementById("modal-bodyText").innerText = item.description;
+    document.getElementById("modal-image").src = item.image;
+    document.getElementById("modal-button").addEventListener('click', (event) => { myModal.hide();});
+}
+
     // Update cart values
     setCartValues(cart) {
         let tempTotal = 0;
@@ -245,6 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ui.displayProducts(products);
         Storage.saveProducts(products);
     }).then(() => {
+        ui.getInfoButtons();
         ui.getBagButtons();
         ui.cartLogic();
     });
