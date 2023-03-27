@@ -42,6 +42,7 @@ function successPurchase() {
     // Show modal
     let myModal = new bootstrap.Modal('#confirmation-modal');
     myModal.show();
+ 
   
     document.getElementById("close-modal-button").addEventListener('click', () => {
         localStorage.removeItem('cart');
