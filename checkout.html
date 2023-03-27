@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body id="checkout-body">
+  <!-- Navigation -->
+
+  <nav class="navbar navbar-expand-md bg-dark-subtle mb-5" style="height: 56px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Webshop</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarId"
+        aria-controls="navbarId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarId">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Shopping cart</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-dark" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Form for personal info -->
+
+  <div class="container" id="form-container">
+    <div class="header" id="form-header">
+      <h2>Checkout</h2>
+    </div>
+    <form id="form" class="form">
+      <div class="form-control" >
+        <label for="username">Full Name</label>
+        <input type="text" placeholder="name" id="username">
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="username">Email Address</label>
+        <input type="email" placeholder="email" id="email">
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="username">Telephone</label>
+        <input type="text" placeholder="telephone number" id="telephone">
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="username">Street Name and Number</label>
+        <input type="text" placeholder="street name and number" id="street">
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="username">Zip Code</label>
+        <input type="text" placeholder="zipcode" id="zipcode">
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <small>Error message</small>
+      </div>
+
+      <div class="form-control">
+        <label for="username">City</label>
+        <input type="text" placeholder="city" id="city">
+        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-exclamation-circle"></i>
+        <small>Error message</small>
+      </div>
+
+      <button id="submit-button">Confirm Purchase</button>
+    </form>
+  </div>
+
+  <!-- Modal -->
+
+  <div class="modal fade" id="confirmation-modal">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h1 id="modal-title" class="modal-title w-100">Order Confirmed</h1>
+        </div>
+        <div id="modal-bodyText" class="modal-body"></div>
+        <div class="modal-footer">
+          <a href="index.html" id="modal-button" target="_self">Continue</a>
+          <a href="checkout.html" id="cancel-button" target="_self">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+
+</html>

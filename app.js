@@ -181,12 +181,10 @@ class UI {
     }
     // Add functinality to clear cart-button
     cartLogic() {
-        checkoutBtn.addEventListener('click', () => { this.checkOut(); });
+        checkoutBtn.addEventListener('click', () => {window.location.href = "checkout.html"});
         clearCartBtn.addEventListener('click', () => { this.clearCart(); });  // add listener to clear cart button & Clear cart
         cartContent.addEventListener('click', event => {                    // Add listener to all buttons in sidecart
-            
-            
-            
+
             if (event.target.classList.contains('remove-item')) {                // If remove item-button
                 let removeItem = event.target;
                 let id = removeItem.dataset.id;
@@ -227,10 +225,6 @@ class UI {
                 }
             }
         });
-    }
-    checkout() {
-
-
     }
     // Empty local storage by calling removeItem for all items in cart
     clearCart() {
