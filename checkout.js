@@ -9,7 +9,7 @@ const zipcode = document.getElementById('zipcode');
 const city = document.getElementById('city');
 const shoppingCart = [];
 
-form.addEventListener('submit', e => {
+document.getElementById('confirm-button').addEventListener('click', e => {
     e.preventDefault();
     checkInputs();
 });
@@ -43,21 +43,10 @@ function successPurchase() {
     let myModal = new bootstrap.Modal('#confirmation-modal');
     myModal.show();
   
-    // Set modal text
-    var modalText = document.getElementById("modal-bodyText");
-    const loadedCart= JSON.parse(localStorage.getItem('storedCart'))
-   
-    modalText.appendChild(document.createTextNode(loadedCart[0].title));
-    modalText.appendChild(document.createElement("br"));
-    modalText.appendChild(document.createTextNode("Shipped to:"));
-    modalText.appendChild(document.createElement("br"));
-    modalText.appendChild(document.createTextNode(username.value.trim()));
-    modalText.appendChild(document.createElement("br"));
-    modalText.appendChild(document.createTextNode(street.value.trim()));
-    modalText.appendChild(document.createElement("br"));
-    modalText.appendChild(document.createTextNode(zipcode.value.trim()));
-    modalText.appendChild(document.createElement("br"));
-    modalText.appendChild(document.createTextNode(city.value.trim()));
+    document.getElementById("close-modal-button").addEventListener('click', () => {
+        localStorage.removeItem('cart');
+        window.location.href = "index.html";
+    });
 }
 
 

@@ -91,7 +91,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 .banner {
@@ -306,7 +306,7 @@ body {
 }
 
 .cart-item img {
-   
+
     border: 1px solid #c0bebe;
     width: 75px;
     height: 75px;
@@ -325,7 +325,7 @@ body {
 }
 
 .item-amount {
-   padding-top: 1rem;
+    padding-top: 1rem;
     text-align: center;
 }
 
@@ -390,6 +390,7 @@ body {
     background: transparent;
     color: var(--primaryColor);
 }
+
 /*---------- End of Cart Item -------------------- */
 
 .cart-footer {
@@ -413,16 +414,16 @@ body {
 }
 
 #modal-button {
-        text-decoration: none;
-        padding: 1rem 3rem;
-        text-transform: uppercase;
-        letter-spacing: var(--mainSpacing);
-        font-size: 1rem;
-        background: var(--primaryColor);
-        color: var(--mainBlack);
-        border: 1px solid var(--primaryColor);
-        transition: var(--mainTransition);
-        cursor: pointer;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 1rem;
+    background: var(--primaryColor);
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
 }
 
 #modal-button:hover {
@@ -430,7 +431,7 @@ body {
     color: var(--primaryColor);
 }
 
-#modal-image {  
+#modal-image {
     height: 100px;
     filter: grayscale(15%);
 
@@ -442,7 +443,7 @@ body {
     margin-bottom: 2rem;
 }
 
-.modal-body{
+.modal-body {
     margin-top: 2rem;
     margin-bottom: 1rem;
     background-color: #f7f6f6;
@@ -452,4 +453,210 @@ body {
     font-size: xx-large;
 }
 
+/* --------------- End of  Modal ---------------- */
+/* --------------- Checkout ---------------- */
 
+#form-container {
+    margin-top: 2rem;
+    letter-spacing: var(--mainSpacing);
+
+
+}
+
+#checkout-body {
+    background: var(--mainWhite);
+    font-family: "Lato", sans-serif;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    background: url("./images/hero5.jpeg") center/cover no-repeat;
+    background-size: cover;
+}
+
+#form-container {
+    padding-top: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 400px;
+    max-width: 100%;
+    padding-bottom: 10px;
+}
+
+#form-header {
+    border-bottom: 1px solid #f0f0f0;
+    background: rgb(231, 226, 221);
+    padding: 20px 40px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: x-large;
+    text-align: center;
+}
+
+#form-header {
+    padding: 30px 40px;
+}
+
+.form-control {
+    align-items: center;
+    align-content: center;
+    padding-bottom: 20px;
+    position: relative;
+    border-color: #ffffff;
+}
+
+.form-control label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.form-control input {
+    border: 2px solid #d8d6d6;
+    border-radius: 4px;
+    display: block;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+.form-control input:focus {
+    outline: 0;
+    border-color: #777;
+}
+
+.form-control.success input {
+    border-color: #2ecc71;
+}
+
+.form-control.error input {
+    border-color: #e74c3c;
+}
+
+.form-control i {
+    visibility: hidden;
+    position: absolute;
+    top: 40px;
+    right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+    font-size: large;
+    padding-right: 14px;
+    padding-top: 9px;
+    color: #2ecc71;
+    visibility: visible;
+}
+
+
+.form-control.error i.fa-exclamation-circle {
+    font-size: large;
+    padding-right: 14px;
+    padding-top: 9px;
+    color: #e74c3c;
+    visibility: visible;
+}
+
+
+.form-control small {
+    padding-left: 11px;
+    color: #e74c3c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.form-control.error small {
+    visibility: visible;
+}
+
+#confirm-button {
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 1rem;
+    background: var(--primaryColor);
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
+}
+
+#back-button {
+   
+    text-decoration: none;
+    padding: 0.5rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 0.8rem;
+    background: #e6ddd6;
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
+}
+
+#back-arrow {
+    padding-right: 0.5rem;
+}
+
+#back-button:hover {
+
+    background: transparent;
+    color: var(--primaryColor);
+}
+
+#confirm-button:hover {
+    background: transparent;
+    color: var(--primaryColor);
+}
+
+.checkout-footer {
+    width: 100%;
+    text-align: center;
+}
+
+.checkout-footer{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* --------------- Checkout Modal ---------------- */
+
+
+#close-modal-button {
+    font-weight: bold;
+    width: 100%;
+    margin-bottom: 2rem;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 1rem;
+    background: var(--primaryColor);
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
+}
+
+#modal-bodyText {
+    
+    font-size: large;
+    padding-bottom: 4rem;
+    background-color: #fffdfd;
+}
+
+#close-modal-button:hover {
+    background: transparent;
+    color: var(--primaryColor);
+}
