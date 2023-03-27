@@ -39,8 +39,7 @@ class UI {
     // Load all products to UI
     displayProducts(products) {
         let result = '';
-        products.forEach(product => {
-            result += `  <!-- single product -->
+        products.forEach(product => {result += `
         <article class="product">
             <div class="img-container">
                 <img src=${product.image} alt="product" class="product-img">
@@ -51,8 +50,7 @@ class UI {
             </div>
             <h3>${product.title}</h3>
             <h4>$${Number(product.price).toFixed(2)}</h4>
-        </article>
-        <!-- end of single product -->`;
+        </article>`;
         });
         productsDOM.innerHTML = result;
     }
@@ -137,74 +135,78 @@ class UI {
     populateCart(cart) {
         cart.forEach(item => this.addCartItem(item));
     }
-    hideCart(){
+    hideCart() {
         cartOverlay.classList.remove('transparentBcg');
         cartDOM.classList.remove('showCart');
     }
     // Add functinality to clear cart-button
-    cartLogic(){
-    clearCartBtn.addEventListener('click', () => {this.clearCart();});  // add listener to clear cart button & Clear cart
-    cartContent.addEventListener('click', event => {                    // Add listener to all buttons in sidecart
-    if(event.target.classList.contains('remove-item')) {                // If remove item-button
-        let removeItem = event.target;
-        let id = removeItem.dataset.id;
-        cartContent.removeChild(removeItem.parentElement.parentElement); // Remove item <Div>
-        this.removeItem(id);                                             // Remove item from storage
-    }
-else if (event.target.classList.contains('fa-chevron-up')) {
-    let addAmount = event.target;
-    let id = addAmount.dataset.id;
-    let tempItem = cart.find(item => item.id == id);
-    tempItem.amount = tempItem.amount + 1;                               // Update item.amount parameter
-    Storage.saveCart(cart);                                              // save cart with updated item
-    this.setCartValues(cart);                                            // Update cartbutton and cartvalues
-    addAmount.nextElementSibling.innerText = tempItem.amount;            // Update number netween arrows
-}
+    cartLogic() {
+        clearCartBtn.addEventListener('click', () => { this.clearCart(); });  // add listener to clear cart button & Clear cart
+        cartContent.addEventListener('click', event => {                    // Add listener to all buttons in sidecart
+            if (event.target.classList.contains('remove-item')) {                // If remove item-button
+                let removeItem = event.target;
+                let id = removeItem.dataset.id;
+                cartContent.removeChild(removeItem.parentElement.parentElement); // Remove item <Div>
+                this.removeItem(id);  
+                cart = Storage.getCart();
+                if (cart.length == 0) {
+                    this.hideCart();
+                }                                           // Remove item from storage
+            }
+            else if (event.target.classList.contains('fa-chevron-up')) {
+                let addAmount = event.target;
+                let id = addAmount.dataset.id;
+                let tempItem = cart.find(item => item.id == id);
+                tempItem.amount = tempItem.amount + 1;                               // Update item.amount parameter
+                Storage.saveCart(cart);                                              // save cart with updated item
+                this.setCartValues(cart);                                            // Update cartbutton and cartvalues
+                addAmount.nextElementSibling.innerText = tempItem.amount;            // Update number netween arrows
+            }
 
-else if (event.target.classList.contains('fa-chevron-down')){
-let lowerAmount = event.target;
-let id = lowerAmount.dataset.id;
-let tempItem = cart.find(item => item.id == id); 
-tempItem.amount = tempItem.amount - 1;
-if (tempItem.amount > 0){
-    Storage.saveCart(cart);
-    this.setCartValues(cart);
-    lowerAmount.previousElementSibling.innerText = tempItem.amount;
-}
-else {
-cartContent.removeChild(lowerAmount.parentElement.parentElement);
-this.removeItem(id);
-}
-
-}
-
-});
-
-
+            else if (event.target.classList.contains('fa-chevron-down')) {
+                let lowerAmount = event.target;
+                let id = lowerAmount.dataset.id;
+                let tempItem = cart.find(item => item.id == id);
+                tempItem.amount = tempItem.amount - 1;
+                if (tempItem.amount > 0) {
+                    Storage.saveCart(cart);
+                    this.setCartValues(cart);
+                    lowerAmount.previousElementSibling.innerText = tempItem.amount;
+                }
+                else {
+                    cartContent.removeChild(lowerAmount.parentElement.parentElement);
+                    this.removeItem(id);
+                    cart = Storage.getCart();
+                    if (cart.length == 0) {
+                        this.hideCart();
+                    }
+                }
+            }
+        });
     }
 
     // Empty local storage by calling removeItem for all items in cart
-    clearCart(){
-    let cartItems = cart.map(item => item.id);
-    cartItems.forEach(id => this.removeItem(id));
-    console.log(cartContent.children);
-    while(cartContent.children.length > 0) {
-        cartContent.removeChild(cartContent.children[0]);
-    }
-    this.hideCart();
+    clearCart() {
+        let cartItems = cart.map(item => item.id);
+        cartItems.forEach(id => this.removeItem(id));
+        console.log(cartContent.children);
+        while (cartContent.children.length > 0) {
+            cartContent.removeChild(cartContent.children[0]);
+        }
+        this.hideCart();
     }
     // Remove item from cart & resave cart to local storage
-    removeItem(id){
-    cart = cart.filter(item => item.id != id);
-    this.setCartValues(cart);
-    Storage.saveCart(cart);
-    let button = this.getSingleButton(id);
-    button.disabled = false;
-    button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
+    removeItem(id) {
+        cart = cart.filter(item => item.id != id);
+        this.setCartValues(cart);
+        Storage.saveCart(cart);
+        let button = this.getSingleButton(id);
+        button.disabled = false;
+        button.innerHTML = `<i class="fas fa-shopping-cart"></i>add to cart`;
     }
-getSingleButton(id){
-   return buttonsDOM.find(button => button.dataset.id == id);
-}
+    getSingleButton(id) {
+        return buttonsDOM.find(button => button.dataset.id == id);
+    }
 }
 
 // ************************************************** //
