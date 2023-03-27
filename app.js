@@ -4,6 +4,7 @@
 const cartBtn = document.querySelector('.cart-btn');
 const CloseCartBtn = document.querySelector('.close-cart');
 const clearCartBtn = document.querySelector('.clear-cart');
+const checkoutBtn = document.getElementById("checkout-btn");
 const cartDOM = document.querySelector('.cart');
 const cartOverlay = document.querySelector('.cart-overlay');
 const cartItems = document.querySelector('.cart-items');
@@ -39,7 +40,8 @@ class UI {
     // Load all products to UI
     displayProducts(products) {
         let result = '';
-        products.forEach(product => {result += `
+        products.forEach(product => {
+            result += `
         <article class="product">
             <div class="img-container">
                 <img src=${product.image} alt="product" class="product-img">            
@@ -59,10 +61,11 @@ class UI {
         productsDOM.innerHTML = result;
     }
     // Add listener to info buttons and call showModal
-    getInfoButtons(){
+    getInfoButtons() {
         const infoButtons = [...document.querySelectorAll(".info-btn")];
-        infoButtons.forEach(button => {button.addEventListener('click', (event) => {
-                let id = button.dataset.id; 
+        infoButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                let id = button.dataset.id;
                 event.preventDefault();
                 this.showModal(id);
             })
@@ -107,16 +110,16 @@ class UI {
     }
 
 
-// Show modal - setText - close modal
-showModal(id){               
-    let item = Storage.getProduct(id);
-    let myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('info-modal'));
-    myModal.show();
-    document.getElementById("modal-title").innerText = item.title;
-    document.getElementById("modal-bodyText").innerText = item.description;
-    document.getElementById("modal-image").src = item.image;
-    document.getElementById("modal-button").addEventListener('click', (event) => { myModal.hide();});
-}
+    // Show modal - setText - close modal
+    showModal(id) {
+        let item = Storage.getProduct(id);
+        let myModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('info-modal'));
+        myModal.show();
+        document.getElementById("modal-title").innerText = item.title;
+        document.getElementById("modal-bodyText").innerText = item.description;
+        document.getElementById("modal-image").src = item.image;
+        document.getElementById("modal-button").addEventListener('click', (event) => { myModal.hide(); });
+    }
 
     // Update cart values
     setCartValues(cart) {
@@ -146,10 +149,20 @@ showModal(id){
 </div>`;
         cartContent.appendChild(div);
     }
-    // Shows the sidecart 
+    // Shows the sidecart & toggle visibility on buttons
     showCart() {
         cartOverlay.classList.add('transparentBcg');
         cartDOM.classList.add('showCart');
+        cart = Storage.getCart();
+            if (cart.length == 0) {
+                console.log(checkoutBtn);
+                checkoutBtn.style.display = "none";
+                clearCartBtn.style.display = "none";
+            } 
+            else {
+                checkoutBtn.style.display = "inline";
+                clearCartBtn.style.display = "inline";
+            }
     }
     // Check and load from local storage, set cart values and populate sidecart with items
     setupAPP() {
@@ -168,13 +181,17 @@ showModal(id){
     }
     // Add functinality to clear cart-button
     cartLogic() {
+        checkoutBtn.addEventListener('click', () => { this.checkOut(); });
         clearCartBtn.addEventListener('click', () => { this.clearCart(); });  // add listener to clear cart button & Clear cart
         cartContent.addEventListener('click', event => {                    // Add listener to all buttons in sidecart
+            
+            
+            
             if (event.target.classList.contains('remove-item')) {                // If remove item-button
                 let removeItem = event.target;
                 let id = removeItem.dataset.id;
                 cartContent.removeChild(removeItem.parentElement.parentElement); // Remove item <Div>
-                this.removeItem(id);  
+                this.removeItem(id);
                 cart = Storage.getCart();
                 if (cart.length == 0) {
                     this.hideCart();
@@ -211,7 +228,10 @@ showModal(id){
             }
         });
     }
+    checkout() {
 
+
+    }
     // Empty local storage by calling removeItem for all items in cart
     clearCart() {
         let cartItems = cart.map(item => item.id);
