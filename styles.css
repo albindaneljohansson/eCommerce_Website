@@ -391,6 +391,11 @@ body {
     color: var(--primaryColor);
 }
 
+.sum-items{
+    margin-left: 0.5rem;
+    font-size: small;
+}
+
 /*---------- End of Cart Item -------------------- */
 
 .cart-footer {

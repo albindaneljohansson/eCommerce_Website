@@ -10,7 +10,9 @@ const cartOverlay = document.querySelector('.cart-overlay');
 const cartItems = document.querySelector('.cart-items');
 const cartTotal = document.querySelector('.cart-total');
 const cartContent = document.querySelector('.cart-content');
+const cartSumPerItem = document.querySelector('.sum-items');
 const productsDOM = document.querySelector('.products-center');
+
 
 // Cart
 let cart = [];
@@ -105,7 +107,6 @@ class UI {
                 // show the cart
                 this.showCart();
             })
-
         })
     }
 
@@ -125,12 +126,17 @@ class UI {
     setCartValues(cart) {
         let tempTotal = 0;
         let itemsTotal = 0;
+        // Update sum per item
+        this.updateItemSum(cart);
         cart.map(item => {
             tempTotal += item.price * item.amount;
             itemsTotal += item.amount;
         })
         cartTotal.innerText = Number(parseFloat(tempTotal.toFixed(2))).toFixed(2);
         cartItems.innerText = itemsTotal;
+
+
+
     }
     // Add items to sidecart
     addCartItem(item) {
@@ -140,7 +146,9 @@ class UI {
 <div>
     <h4>${item.title}</h4>
     <h5>$${Number(item.price).toFixed(2)}</h5>
-    <span class="remove-item fas fa-trash" data-id=${item.id}></span>
+   
+    <span class="remove-item fas fa-trash" data-id=${item.id}>
+    <span class="sum-items" data-id=${item.id}>Item Total: $${Number(item.price).toFixed(2)} </span></span>
 </div>
 <div>
 <i class="fas fa-chevron-up" data-id=${item.id}></i>
@@ -154,15 +162,14 @@ class UI {
         cartOverlay.classList.add('transparentBcg');
         cartDOM.classList.add('showCart');
         cart = Storage.getCart();
-            if (cart.length == 0) {
-                console.log(checkoutBtn);
-                checkoutBtn.style.display = "none";
-                clearCartBtn.style.display = "none";
-            } 
-            else {
-                checkoutBtn.style.display = "inline";
-                clearCartBtn.style.display = "inline";
-            }
+        if (cart.length == 0) {
+            checkoutBtn.style.display = "none";
+            clearCartBtn.style.display = "none";
+        }
+        else {
+            checkoutBtn.style.display = "inline";
+            clearCartBtn.style.display = "inline";
+        }
     }
     // Check and load from local storage, set cart values and populate sidecart with items
     setupAPP() {
@@ -181,7 +188,7 @@ class UI {
     }
     // Add functinality to clear cart-button
     cartLogic() {
-        checkoutBtn.addEventListener('click', () => {window.location.href = "checkout.html"});
+        checkoutBtn.addEventListener('click', () => { window.location.href = "checkout.html" });
         clearCartBtn.addEventListener('click', () => { this.clearCart(); });  // add listener to clear cart button & Clear cart
         cartContent.addEventListener('click', event => {                    // Add listener to all buttons in sidecart
 
@@ -226,6 +233,20 @@ class UI {
             }
         });
     }
+
+    updateItemSum(cart) {
+        if (cart.length > 0) {
+            const allItemTags = [...document.querySelectorAll("span.sum-items")];
+            cart.forEach(item => {
+                let itemSum = "Item Total: $ " + item.amount * item.price;
+                allItemTags.forEach(tag => {
+                    let id = tag.dataset.id;
+                    if (id == item.id) { tag.innerText = itemSum }
+                })
+            });
+        }
+    }
+
     // Empty local storage by calling removeItem for all items in cart
     clearCart() {
         let cartItems = cart.map(item => item.id);
