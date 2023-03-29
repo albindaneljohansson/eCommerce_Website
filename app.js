@@ -122,7 +122,7 @@ class UI {
         document.getElementById("modal-button").addEventListener('click', (event) => { myModal.hide(); });
     }
 
-    // Update cart values
+    // Update cart total and nav-cart-icon number & call setCartValues -> update sum per Item in cart
     setCartValues(cart) {
         let tempTotal = 0;
         let itemsTotal = 0;
@@ -251,7 +251,6 @@ class UI {
     clearCart() {
         let cartItems = cart.map(item => item.id);
         cartItems.forEach(id => this.removeItem(id));
-        console.log(cartContent.children);
         while (cartContent.children.length > 0) {
             cartContent.removeChild(cartContent.children[0]);
         }
